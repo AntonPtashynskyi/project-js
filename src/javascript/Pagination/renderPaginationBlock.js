@@ -1,6 +1,6 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import './pagination.scss';
+
 
 const API_KEY = 'c7ed46652640bc5a91d5a4e73d915c28';
 
