@@ -5,7 +5,8 @@ const header = document.querySelector('header');
 
 const movieApiService = new apiService();// Новий екземпляр класу
 
-getPopularMovies(); // Завантажує популярні фільми, при відкритті сайту
+getPopularMovies().then(createFirstListMovies); // Завантажує популярні фільми, при відкритті сайту
+                                                // та малює першу сторінку
 
 searchForm.addEventListener('submit', getSearchMovies);
 
@@ -55,7 +56,7 @@ async function getPopularMovies(e) {
 
       localStorage.setItem("genres", JSON.stringify(genres));// Додає список жанрів при першому завантаженні до localstorage
       addMoviesCollectionToLocalStorage(movies);
-      
+      return {movies, genres}; ////// additional by Malanchenko Sergii
 
   } catch (error) {console.log(error) };
   
@@ -80,3 +81,26 @@ function addMoviesCollectionToLocalStorage(moviesArray) {
   localStorage.removeItem("MoviesCollection");
   localStorage.setItem("MoviesCollection", JSON.stringify(moviesArray));
 };
+
+// ====================================================================
+
+ function createFirstListMovies(data) {
+
+    const markupMovies = data.movies.results.map(({ poster_path, original_title, genre_ids, release_date }) => {
+        return `<li class="film__item">
+                    <a class="film__link" href="#">
+                        <div class="film__card">
+                            <div class="film__thumb">
+                                <img class="film__image" src="https://image.tmdb.org/t/p/w500/${poster_path}" loading="lazy" alt="${original_title}">
+                            </div>
+                            <div class="film__information">
+                                <p class="film__title">${original_title}</p>
+                                <span class="film__genre">${genre_ids}</span>
+                                <span class="film__year">| ${release_date}</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>`
+    }).join("");
+    document.querySelector(".films__list").innerHTML = markupMovies
+}
