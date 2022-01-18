@@ -16,4 +16,4 @@ var t;!function(e,n){"object"==typeof exports&&"object"==typeof module?module.ex
 },{"tui-pagination":"jPMh"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./javascript/README"),require("./javascript/fetch"),require("./javascript/renderPaginationBlock");
 },{"./sass/main.scss":"clu1","./javascript/README":"LVRd","./javascript/fetch":"rSJL","./javascript/renderPaginationBlock":"iamJ"}]},{},["Focm"], null)
-//# sourceMappingURL=/project-js/src.d2f655c9.js.map
+//# sourceMappingURL=/project-js/src.959f2921.js.map
