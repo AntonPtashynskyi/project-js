@@ -5,7 +5,7 @@
 
 // Стили для файла с примером HTML-фрагмента
 // @import './example';
-
+@import './utils/variables';
 // base ===============================================
 @import './base/common';
 @import './base/container';
@@ -14,3 +14,5 @@
 @import './components/body-main';
 
 // utils ==============================================
+@import './layout/header';
+@import './layout/pagination-block';
