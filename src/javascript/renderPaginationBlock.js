@@ -29,7 +29,6 @@ const options = {
       '</a>'
   }
 };
-console.log(options.totalItems)
 
 const pagination = new Pagination('pagination', options);
 
@@ -47,7 +46,6 @@ async function searchNewMovies() {
 
   if (apiService.query) {
     newMovies = await apiService.fetchSearchMovies();
-    console.log(newMovies)
     return
   } else {
     newMovies = await apiService.fetchPopularMovies();
