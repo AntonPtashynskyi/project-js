@@ -35,7 +35,7 @@ export default class apiService {
   }
 
   get page() {
-    return thid.pageNum;
+    return this.pageNum;
   }
 
   set page(newPageNum) {
