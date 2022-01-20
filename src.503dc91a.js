@@ -18,4 +18,4 @@ function t(){const t=window.pageYOffset,e=document.documentElement.clientHeight;
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./javascript/README"),require("./javascript/fetchMovies"),require("./javascript/renderPaginationBlock"),require("./javascript/scrollToTop");
 },{"./sass/main.scss":"clu1","./javascript/README":"LVRd","./javascript/fetchMovies":"XLFH","./javascript/renderPaginationBlock":"iamJ","./javascript/scrollToTop":"WMXy"}]},{},["Focm"], null)
-//# sourceMappingURL=/project-js/src.1363d88e.js.map
+//# sourceMappingURL=/project-js/src.503dc91a.js.map
