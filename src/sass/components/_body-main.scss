@@ -1,4 +1,131 @@
 .main {
-  min-height: 90vh;
-  background-color: rgb(185, 185, 237);
+  min-height: 60vh;
+}
+.films__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 60px;
+  padding-bottom: 50px;
+
+  @media screen and (min-width: 320px) {
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+  @media screen and (min-width: 768px) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: -30px;
+    margin-right: -30px;
+  }
+  @media screen and (min-width: 1024px) {
+  }
+}
+
+.film__card {
+  border-radius: 10px;
+  transition: transform 250ms linear;
+
+  @media screen and (min-width: 320px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    margin: 15px;
+    margin-bottom: 30px;
+  }
+  @media screen and (min-width: 1024px) {
+  }
+}
+
+.film__card:hover {
+  transform: scale(1.02);
+}
+
+.film__thumb {
+  object-fit: cover;
+
+  @media screen and (min-width: 320px) {
+    width: 280px;
+    height: 402px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 293px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 274px;
+  }
+}
+
+.film__image {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.film__information {
+  padding-top: 10px;
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 293px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 274px;
+  }
+}
+
+.film__title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+
+  color: $main-dark-color;
+}
+
+.film__genre {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: $main-accent-color;
+}
+.film__year {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: $main-accent-color;
+}
+
+.back_to_top {
+  position: fixed;
+  bottom: 80px;
+  right: 60px;
+  z-index: 9999;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: #d3b6b6;
+  color: rgb(14, 13, 13);
+  cursor: pointer;
+  border-radius: 15px;
+  display: none;
+  transition: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.back_to_top:hover {
+  background: #e9ebec;
+}
+
+.back_to_top-show {
+  display: block;
 }
