@@ -1,11 +1,11 @@
 import Pagination from 'tui-pagination';
 import { fetchMovies } from './fetchMovies';
 
-const totalItemsParse = JSON.parse(localStorage.getItem("MoviesCollection"))
-const totalItems = totalItemsParse.total_results;
+// const totalItemsParse = JSON.parse(localStorage.getItem("MoviesCollection"))
+// const totalItems = totalItemsParse.total_results;
 
 const options = {
-  totalItems, 
+  totalItems: 20000, 
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
