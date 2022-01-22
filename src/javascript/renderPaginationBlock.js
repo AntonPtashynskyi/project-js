@@ -36,7 +36,6 @@ pagination.on("afterMove", async ({ page }) => {
     pagination.reset(newMovies.total_results)
     // pagination.setTotalItems(newMovies.total_results)
   }
-  pagination.setTotalItems(newMovies.total_results)
 })
 
 export { pagination };
