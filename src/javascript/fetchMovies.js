@@ -26,7 +26,7 @@ try {
  async function onSubmitForm(e) {
   e.preventDefault();
   movieApiService.searchQuery = e.currentTarget.elements.query.value.trim();
-  // pagination.movePageTo(1);
+  pagination.movePageTo(1);
 
 
   if (movieApiService.searchQuery === '') {
