@@ -20,4 +20,4 @@ const e=document.querySelector(".js-team-modal"),t=document.querySelector("body"
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./javascript/fetchMovies"),require("./javascript/preloader"),require("./javascript/renderPaginationBlock"),require("./javascript/scrollToTop"),require("./javascript/modal-team");
 },{"./sass/main.scss":"clu1","./javascript/fetchMovies":"XLFH","./javascript/preloader":"oVfn","./javascript/renderPaginationBlock":"iamJ","./javascript/scrollToTop":"WMXy","./javascript/modal-team":"VEy2"}]},{},["Focm"], null)
-//# sourceMappingURL=/project-js/src.7ff3f2c5.js.map
+//# sourceMappingURL=/project-js/src.3c958e7a.js.map
