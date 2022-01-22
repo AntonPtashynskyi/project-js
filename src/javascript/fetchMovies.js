@@ -3,13 +3,17 @@ import { pagination } from "./renderPaginationBlock";
 import { renderHomeMarkup, renderLibraryMarkup } from './markup';
 import { togglePreloader } from "./preloader";
 
-const searchForm = document.querySelector('.main-form_js');
 const errorMessage = document.querySelector('.error-message');
 const movieApiService = new apiService();
+const searchForm = document.querySelector('.main-form_js');
+
 
 searchForm.addEventListener('submit', onSubmitForm);
 
 
+
+
+fetchMovies()
 
 try {
   fetchMovies();
@@ -19,13 +23,11 @@ try {
   console.log(error);
 }
 
-
-
-function onSubmitForm(e) {
+ async function onSubmitForm(e) {
   e.preventDefault();
   movieApiService.searchQuery = e.currentTarget.elements.query.value.trim();
+  // pagination.movePageTo(1);
 
-  pagination.movePageTo(1);
 
   if (movieApiService.searchQuery === '') {
     addErrorMessage();
@@ -33,7 +35,11 @@ function onSubmitForm(e) {
     return
   }
   
+  const movies = await  fetchMovies()
+  pagination.setTotalItems(movies.total_results)
+
 }
+
 
 
 async function fetchMovies(page = 1) {
@@ -41,6 +47,7 @@ async function fetchMovies(page = 1) {
   movieApiService.pageNum = page;
 
   let movies = {};
+
  togglePreloader();
   if (movieApiService.searchQuery) {
           movies = await movieApiService.fetchSearchMovies();
@@ -57,7 +64,7 @@ async function fetchMovies(page = 1) {
 
   addMoviesCollectionToLocalStorage(movies)
   
-  await renderHomeMarkup(movies.results)
+  renderHomeMarkup(movies.results)
   togglePreloader()
   return movies;
 };
@@ -87,4 +94,4 @@ function removeErrorMessage() {
   
 };
 
-export { fetchMovies };
+export { fetchMovies, onSubmitForm };

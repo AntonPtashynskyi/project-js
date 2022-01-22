@@ -1,8 +1,5 @@
 import Pagination from 'tui-pagination';
-import { fetchMovies } from './fetchMovies';
-
-// const totalItemsParse = JSON.parse(localStorage.getItem("MoviesCollection"))
-// const totalItems = totalItemsParse.total_results;
+import { fetchMovies, onSubmitForm } from './fetchMovies';
 
 const options = {
   totalItems: 20000, 
@@ -33,10 +30,12 @@ const options = {
 
 const pagination = new Pagination('pagination', options);
 
+
 pagination.on("afterMove", async ({ page }) => {
   const newMovies = await fetchMovies(page);
   if (page === 1) {
     pagination.reset(newMovies.total_results)
+    // pagination.setTotalItems(newMovies.total_results)
   }
 })
 
