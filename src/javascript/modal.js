@@ -16,7 +16,6 @@ const body = document.querySelector('body');
 
 filmsContainer.addEventListener('click', onFilmClick);
 modalCloseBtn.addEventListener('click', toggleModal);
-// modalOpenBtn.addEventListener('click', toggleOverflow);
 
 function toggleModal() {
   modal.classList.toggle('is-hidden');

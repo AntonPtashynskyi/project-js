@@ -6,6 +6,8 @@ import { togglePreloader } from './preloader';
 const errorMessage = document.querySelector('.error-message');
 const movieApiService = new apiService();
 const searchForm = document.querySelector('.main-form_js');
+let newSearchQuery;
+let movies = {};
 
 searchForm.addEventListener('submit', onSubmitForm);
 
@@ -19,21 +21,31 @@ try {
 
 async function onSubmitForm(e) {
   e.preventDefault();
-  movieApiService.searchQuery = e.currentTarget.elements.query.value.trim();
+
+  if (newSearchQuery !== e.currentTarget.elements.query.value.trim()) {
+    newSearchQuery = e.currentTarget.elements.query.value.trim();
+    movieApiService.searchQuery = newSearchQuery;
+
+    await fetchMovies();
+
+    if (movies.results.length === 0) {
+      return;
+    }
+    pagination.reset();
+  } else {
+    await fetchMovies();
+    pagination.reset();
+  }
 
   if (movieApiService.searchQuery === '') {
     addErrorMessage();
     setTimeout(removeErrorMessage, 2000);
     return;
   }
-
-  pagination.movePageTo(1);
 }
 
 async function fetchMovies(page = 1) {
   movieApiService.pageNum = page;
-
-  let movies = {};
 
   togglePreloader();
   if (movieApiService.searchQuery) {
@@ -46,8 +58,10 @@ async function fetchMovies(page = 1) {
     togglePreloader();
     addErrorMessage();
     setTimeout(removeErrorMessage, 2000);
+
     return;
   }
+
   pagination.setTotalItems(movies.total_results);
 
   addMoviesCollectionToLocalStorage(movies);

@@ -1,13 +1,8 @@
 import Pagination from 'tui-pagination';
 import { fetchMovies, onSubmitForm } from './fetchMovies';
 
-
-//const totalItemsParse = JSON.parse(localStorage.getItem("MoviesCollection"))
-// const totalItems = totalItemsParse.total_results;
-
-
 const options = {
-  totalItems: 200, 
+  totalItems: 200,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -17,7 +12,8 @@ const options = {
   usageStatistics: false,
   template: {
     page: '<button class="tui-page-btn">{{page}}</button>',
-    currentPage: '<button class="tui-page-btn tui-is-selected" data-number="{{page}}">{{page}}</button>',
+    currentPage:
+      '<button class="tui-page-btn tui-is-selected" data-number="{{page}}">{{page}}</button>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}}">' +
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
@@ -29,19 +25,18 @@ const options = {
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip" >' +
       '<span class="tui-ico-ellip">...</span>' +
-      '</a>'
-  }
+      '</a>',
+  },
 };
 
 const pagination = new Pagination('pagination', options);
 
-
-pagination.on("afterMove", async ({ page }) => {
+pagination.on('afterMove', async ({ page }) => {
   const newMovies = await fetchMovies(page);
 
   if (page === 1) {
-    pagination.reset(newMovies.total_results)
+    pagination.reset(newMovies.total_results);
   }
-})
+});
 
 export { pagination };
