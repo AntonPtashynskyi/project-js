@@ -1,4 +1,4 @@
-import { genresTextArray } from './markup';
+import { genresTextArrayFull } from './markup';
 import {
   onClickWatchedButton,
   onClickQueueButton,
@@ -8,7 +8,7 @@ import {
 import { toggleOverflow } from './modal-team';
 
 const modalCloseBtn = document.querySelector('[data-modal-close]');
-const modalOpenBtn = document.querySelector('[data-modal-open]');
+// const modalOpenBtn = document.querySelector('[data-modal-open]');
 const modal = document.querySelector('[data-modal]');
 const filmsContainer = document.querySelector('.films__container');
 const modalUI = document.querySelector('.modalUI');
@@ -21,10 +21,8 @@ modalCloseBtn.addEventListener('click', toggleModal);
 
 function toggleModal() {
   modal.classList.toggle('is-hidden');
-  toggleOverflow();
-
-
 }
+
 function onFilmClick(e) {
   if (e.target.nodeName !== 'IMG') {
     return;
@@ -35,6 +33,19 @@ function onFilmClick(e) {
   }
 }
 
+document.addEventListener("click", e => {
+    if(e.target.classList.value === "backdrop"){
+        toggleModal();
+    }
+});
+
+document.addEventListener("keydown", e => {
+    if(e.code === "Escape"){
+        console.log("esc")
+        toggleModal();
+    }
+});
+
 function showFilmInfo(e) {
   const currentFilms = JSON.parse(localStorage.getItem('MoviesCollection')).results;
   currentFilms.map(item => {
@@ -43,17 +54,13 @@ function showFilmInfo(e) {
       localStorage.setItem('currentFilm', JSON.stringify(item));
       modalUI.insertAdjacentHTML(
         'afterbegin',
-        `<img src="https://image.tmdb.org/t/p/w500${
-          item.poster_path
-        }" width="100%" height="100%" alt="" class="film-preview-img" />
+        `<img src="https://image.tmdb.org/t/p/w500${item.poster_path}" width="100%" height="100%" alt="" class="film-preview-img" />
             <div>
               <h1 class="h1">${item.title}</h1>
               <table class="table-info">
                 <tr>
                   <td class="modal-info">Vote / Votes</td>
-                  <td><span class="vote-modal">${
-                    item.vote_average
-                  }</span> / <span class="votes-modal">${item.vote_count}</span></td>
+                  <td><span class="vote-modal">${item.vote_average}</span> / <span class="votes-modal">${item.vote_count}</span></td>
                 </tr>
                 <tr>
                   <td class="modal-info">Popularity</td>
@@ -65,18 +72,20 @@ function showFilmInfo(e) {
                 </tr>
                 <tr>
                   <td class="modal-info">Genre</td>
-                  <td>${genresTextArray(item.genre_ids)}</td>
+                  <td>${genresTextArrayFull(item.genre_ids)}</td>
                 </tr>
               </table>
               <span>ABOUT</span>
               <p class="modal-overview">${item.overview}</p>
               <ul class="buttons-list">
-                <li><button type="submit"  class="btn-modal modal__watched"></button></li>
+                <li><button type="submit" class="btn-modal modal__watched"></button></li>
                 <li><button type="submit" class="btn-modal modal__queue"></button></li>
               </ul>
             </div>`,
       );
     }
+
+    toggleOverflow();
   });
 
 
