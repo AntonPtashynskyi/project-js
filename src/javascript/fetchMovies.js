@@ -15,6 +15,12 @@ try {
   const genres = movieApiService.fetchGenres();
   genres.then(genre => localStorage.setItem("genres", JSON.stringify(genre)));
   fetchMovies();
+  if (!localStorage.getItem("queue")) {
+    localStorage.setItem("queue", 0)
+  }
+  if (!localStorage.getItem("watched")) {
+    localStorage.setItem("watched", 0);
+  }
 } catch (error) {
   console.log(error);
 }
@@ -23,17 +29,14 @@ try {
   e.preventDefault();
   movieApiService.searchQuery = e.currentTarget.elements.query.value.trim();
 
-
   if (movieApiService.searchQuery === '') {
     addErrorMessage();
     setTimeout(removeErrorMessage, 2000);
     return
   }
-   
+  
   pagination.movePageTo(1);
 }
-
-
 
 async function fetchMovies(page = 1) {
   
@@ -51,23 +54,21 @@ async function fetchMovies(page = 1) {
   if (movies.results.length === 0) {
     togglePreloader();
     addErrorMessage();
-    
+
     document.querySelector('.films__container').innerHTML = notFoundBlock();
     document.getElementById('pagination').innerHTML = '';
-    
+
     setTimeout(removeErrorMessage, 2000);
-    return;
+    return
   }
-  if (page === 1) {
-    pagination.reset(movies.total_results)
-  }
-  // pagination.setTotalItems(movies.total_results);
-  addMoviesCollectionToLocalStorage(movies);
+
+  pagination.setTotalItems(movies.total_results)
+
+  addMoviesCollectionToLocalStorage(movies)
+  
   renderHomeMarkup(movies.results)
   togglePreloader()
 };
-
-
 
 function addMoviesCollectionToLocalStorage(moviesArray) { 
   localStorage.removeItem("MoviesCollection");
