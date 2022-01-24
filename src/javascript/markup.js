@@ -1,3 +1,5 @@
+const noPosterPicture = 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Out_Of_Poster.jpg';
+
 function renderHomeMarkup(array) {
   const homeMarkup = array
     .map(({ id, poster_path, title, genre_ids, release_date }) => {
@@ -7,16 +9,14 @@ function renderHomeMarkup(array) {
       const genres = genresTextArray(genre_ids);
 
       if (poster_path === null) {
-        const randomPicture = 'https://picsum.photos/200/300';
-
         return `<li class="film__item">
                 <div class="film__card">
                   <div class="film__thumb">
-                    <img class="film__image" id="${id}" src="${randomPicture}" alt="${title}"loading="lazy" />
+                    <img class="film__image" id="${id}" src="${noPosterPicture}" alt="${title}"loading="lazy" />
                   </div>
                   <div class="film__information">
                     <p class="film__title">${title}</p>
-                    <span class="film__genre">${genre_ids}</span>
+                    <span class="film__genre">${genres}</span>
                     <span class="film__year">| ${year}</span>
                   </div>
                 </div>
@@ -49,6 +49,21 @@ function renderLibraryMarkup(array) {
 
       const genres = genresTextArray(genre_ids);
 
+      if (poster_path === null) {
+        return `<li class="film__item">
+                <div class="film__card">
+                  <div class="film__thumb">
+                    <img class="film__image" id="${id}" src="${noPosterPicture}" alt="${title}"loading="lazy" />
+                  </div>
+                  <div class="film__information">
+                    <p class="film__title">${title}</p>
+                    <span class="film__genre">${genres}</span>
+                    <span class="film__year">| ${year}</span>
+                    <span class="film__rating">${vote_average}</span>
+                  </div>
+                </div>
+            </li>`;
+      }
       return `<li class="film__item">
                 <div class="film__card">
                   <div class="film__thumb">
