@@ -10,7 +10,7 @@ import { toggleOverflow } from './modal-team';
 const modalCloseBtn = document.querySelector('[data-modal-close]');
 const modalOpenBtn = document.querySelector('[data-modal-open]');
 const modal = document.querySelector('[data-modal]');
-const filmsContainer = document.querySelector('.films__list');
+const filmsContainer = document.querySelector('.films__container');
 const modalUI = document.querySelector('.modalUI');
 const body = document.querySelector('body');
 
