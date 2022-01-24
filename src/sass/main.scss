@@ -5,6 +5,7 @@
 
 // Стили для файла с примером HTML-фрагмента
 // @import './example';
+// utils ==============================================
 @import './utils/variables';
 // base ===============================================
 
@@ -16,11 +17,11 @@
 @import './components/modal';
 @import './components/team-section';
 
-
-// utils ==============================================
+// layout ==============================================
 @import './layout/header';
 @import './layout/pagination-block';
 @import './layout/preloader';
+@import './layout/library';
 
 @import './components/backdrop-team';
 @import './layout/notFoundBlock';
