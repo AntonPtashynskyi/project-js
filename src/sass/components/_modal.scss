@@ -12,7 +12,7 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     opacity: 1;
     transition: opacity 250ms $timing-function;
-    z-index: 200;
+    z-index: 10000;
 }
 
 .backdrop.is-hidden{
@@ -22,7 +22,7 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 .modal{
     position: absolute;
-    z-index: 300;
+    
     top: 50%;
     left: 50%;
     width: 280px;
@@ -42,7 +42,7 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition: transform 250ms $timing-function;
 
     @media screen and (min-width: 768px) {
-        width: 618px;
+        width: 630px;
         height: 80%;
         padding: 40px 28px;
         display: flex;
@@ -94,7 +94,7 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     @media screen and (min-width: 768px) {
-        transform: translate(550px, -30px);
+        transform: translate(560px, -30px);
     }
 
     @media screen and (min-width: 1024px){
@@ -194,6 +194,9 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     line-height: 16px;
     border-radius: 5px;
     border: 1px solid $main-dark-color;
+
+    transition: color 250ms $timing-function;
+    transition: background-color 250ms $timing-function;
 
     @media screen and (min-width: 768px) {
         width: 125px;
