@@ -65,6 +65,10 @@ async function fetchMovies(page = 1) {
     return
   }
 
+  if (page === 1) {
+    pagination.reset(movies.total_results)
+  }
+  
   pagination.setTotalItems(movies.total_results)
 
   addMoviesCollectionToLocalStorage(movies)
