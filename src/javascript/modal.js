@@ -40,11 +40,12 @@ document.addEventListener("click", e => {
 });
 
 document.addEventListener("keydown", e => {
-    if(e.code === "Escape"){
-        console.log("esc")
+    if(e.code === "Escape" && modal.classList.value !== "backdrop is-hidden"){
         toggleModal();
     }
 });
+
+
 
 function showFilmInfo(e) {
   const currentFilms = JSON.parse(localStorage.getItem('MoviesCollection')).results;
