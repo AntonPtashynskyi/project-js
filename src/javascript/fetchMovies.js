@@ -26,14 +26,17 @@ try {
 }
 
  async function onSubmitForm(e) {
-  e.preventDefault();
-  movieApiService.searchQuery = e.currentTarget.elements.query.value.trim();
-
-  if (movieApiService.searchQuery === '') {
+   e.preventDefault();
+  
+   if (e.currentTarget.elements.query.value.trim() === '') {
     addErrorMessage();
     setTimeout(removeErrorMessage, 2000);
     return
   }
+
+  movieApiService.searchQuery = e.currentTarget.elements.query.value.trim();
+
+  
   
   pagination.movePageTo(1);
 }

@@ -3,7 +3,7 @@
 // =============================
 import { renderLibraryMarkup } from "./markup"
 
-const libraryBody = document.querySelector(".films__list");
+const libraryBody = document.querySelector(".films__container");
 const paginationBlock = document.getElementById("pagination");
 const messageLibrary = document.querySelector(".library-message");
 
