@@ -1,92 +1,82 @@
-import apiService from "./APIservice";
-import { pagination } from "./renderPaginationBlock";
+import apiService from './APIservice';
+import { pagination } from './renderPaginationBlock';
 import { renderHomeMarkup, renderLibraryMarkup } from './markup';
-import { togglePreloader } from "./preloader";
+import { togglePreloader } from './preloader';
 
 const errorMessage = document.querySelector('.error-message');
 const movieApiService = new apiService();
 const searchForm = document.querySelector('.main-form_js');
 
-
 searchForm.addEventListener('submit', onSubmitForm);
 
 try {
   const genres = movieApiService.fetchGenres();
-  genres.then(genre => localStorage.setItem("genres", JSON.stringify(genre)));
+  genres.then(genre => localStorage.setItem('genres', JSON.stringify(genre)));
   fetchMovies();
 } catch (error) {
   console.log(error);
 }
 
- async function onSubmitForm(e) {
+async function onSubmitForm(e) {
   e.preventDefault();
   movieApiService.searchQuery = e.currentTarget.elements.query.value.trim();
-
 
   if (movieApiService.searchQuery === '') {
     addErrorMessage();
     setTimeout(removeErrorMessage, 2000);
-    return
+    return;
   }
-  
-  const movies = await  fetchMovies()
+
   pagination.movePageTo(1);
- 
 }
 
-
-
 async function fetchMovies(page = 1) {
-  
   movieApiService.pageNum = page;
 
   let movies = {};
 
- togglePreloader();
+  togglePreloader();
   if (movieApiService.searchQuery) {
-          movies = await movieApiService.fetchSearchMovies();
+    movies = await movieApiService.fetchSearchMovies();
   } else {
-          movies = await movieApiService.fetchPopularMovies();
+    movies = await movieApiService.fetchPopularMovies();
   }
-  
+
   if (movies.results.length === 0) {
-    togglePreloader()
+    togglePreloader();
     addErrorMessage();
     setTimeout(removeErrorMessage, 2000);
-    return
+    return;
   }
-  pagination.setTotalItems(movies.total_results)
+  pagination.setTotalItems(movies.total_results);
 
-  addMoviesCollectionToLocalStorage(movies)
-  
-  renderHomeMarkup(movies.results)
-  togglePreloader()
+  addMoviesCollectionToLocalStorage(movies);
+
+  renderHomeMarkup(movies.results);
+  togglePreloader();
   return movies;
-};
+}
 
+function addMoviesCollectionToLocalStorage(moviesArray) {
+  localStorage.removeItem('MoviesCollection');
+  localStorage.setItem('MoviesCollection', JSON.stringify(moviesArray));
+}
 
-
-function addMoviesCollectionToLocalStorage(moviesArray) { 
-  localStorage.removeItem("MoviesCollection");
-  localStorage.setItem("MoviesCollection", JSON.stringify(moviesArray));
-};
-
-
-function addErrorMessage() { 
+function addErrorMessage() {
   const errorIsVisible = document.querySelector('.error-message is_visible');
-  if (errorIsVisible) { return }
+  if (errorIsVisible) {
+    return;
+  }
 
   errorMessage.classList.toggle('is_visible');
-  errorMessage.classList.toggle('is_hidden')
-  
- };
+  errorMessage.classList.toggle('is_hidden');
+}
 
-function removeErrorMessage() { 
-  errorMessage.classList.toggle('is_hidden')
-  errorMessage.classList.toggle('is_visible')
-  
+function removeErrorMessage() {
+  errorMessage.classList.toggle('is_hidden');
+  errorMessage.classList.toggle('is_visible');
+
   searchForm.reset();
-  
-};
+}
 
 export { fetchMovies, onSubmitForm };
