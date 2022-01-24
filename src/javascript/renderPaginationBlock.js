@@ -37,11 +37,7 @@ const pagination = new Pagination('pagination', options);
 
 
 pagination.on("afterMove", async ({ page }) => {
-  const newMovies = await fetchMovies(page);
-
-  if (page === 1) {
-    pagination.reset(newMovies.total_results)
-  }
+  await fetchMovies(page);
 })
 
 export { pagination };

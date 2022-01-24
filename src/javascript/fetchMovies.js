@@ -2,6 +2,7 @@ import apiService from "./APIservice";
 import { pagination } from "./renderPaginationBlock";
 import { renderHomeMarkup, renderLibraryMarkup } from './markup';
 import { togglePreloader } from "./preloader";
+import notFoundBlock from "..//template/notFoundBlock.hbs";
 
 const errorMessage = document.querySelector('.error-message');
 const movieApiService = new apiService();
@@ -28,12 +29,8 @@ try {
     setTimeout(removeErrorMessage, 2000);
     return
   }
-  
-  const movies = await fetchMovies()
-
-  if (movies) {
-    pagination.movePageTo(1);
-   };
+   
+  pagination.movePageTo(1);
 }
 
 
@@ -55,17 +52,19 @@ async function fetchMovies(page = 1) {
     togglePreloader();
     addErrorMessage();
     
-    document.querySelector('.films__list').innerHTML = '';
+    document.querySelector('.films__container').innerHTML = notFoundBlock();
     document.getElementById('pagination').innerHTML = '';
     
     setTimeout(removeErrorMessage, 2000);
     return;
   }
-  pagination.setTotalItems(movies.total_results);
+  if (page === 1) {
+    pagination.reset(movies.total_results)
+  }
+  // pagination.setTotalItems(movies.total_results);
   addMoviesCollectionToLocalStorage(movies);
   renderHomeMarkup(movies.results)
   togglePreloader()
-  return movies;
 };
 
 
