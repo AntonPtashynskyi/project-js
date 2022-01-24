@@ -38,7 +38,7 @@ function renderHomeMarkup(array) {
     })
     .join('');
 
-  document.querySelector('.films__list').innerHTML = homeMarkup;
+  document.querySelector('.films__container').innerHTML = `<ul class="films__list">${homeMarkup}</ul>`;
 }
 
 function renderLibraryMarkup(array) {
@@ -65,7 +65,7 @@ function renderLibraryMarkup(array) {
     })
     .join('');
 
-  document.querySelector('.films__list').innerHTML = libraryMarkup;
+  document.querySelector('.films__container').innerHTML = `<ul class="films__list">${libraryMarkup}</ul>`;
 }
 
 function genresTextArray(genresArray) {
