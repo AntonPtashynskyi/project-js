@@ -29,9 +29,11 @@ try {
     return
   }
   
-  const movies = await  fetchMovies()
-  pagination.movePageTo(1);
- 
+  const movies = await fetchMovies()
+
+  if (movies) {
+    pagination.movePageTo(1);
+   };
 }
 
 
@@ -50,15 +52,17 @@ async function fetchMovies(page = 1) {
   }
   
   if (movies.results.length === 0) {
-    togglePreloader()
+    togglePreloader();
     addErrorMessage();
+    
+    document.querySelector('.films__list').innerHTML = '';
+    document.getElementById('pagination').innerHTML = '';
+    
     setTimeout(removeErrorMessage, 2000);
-    return
+    return;
   }
-  pagination.setTotalItems(movies.total_results)
-
-  addMoviesCollectionToLocalStorage(movies)
-  
+  pagination.setTotalItems(movies.total_results);
+  addMoviesCollectionToLocalStorage(movies);
   renderHomeMarkup(movies.results)
   togglePreloader()
   return movies;
