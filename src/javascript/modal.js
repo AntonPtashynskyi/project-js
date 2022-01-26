@@ -148,3 +148,6 @@ function showFilmInfo(e) {
 function addLeadingZero(value) {
   return String(value).padEnd(3, '.0');
 }
+
+modalWatchedButton.addEventListener('click', () => { onClickWatchedButton(); refreshWatchedMarkup(JSON.parse(localStorage.getItem('watched'))) });
+  modalQueueButton.addEventListener('click', () => { onClickQueueButton(); refreshQueueMarkup(JSON.parse(localStorage.getItem('queue'))) });

@@ -47,7 +47,7 @@ home.addEventListener('click', onAddHomePage);
       messageLibrary.innerHTML = "queue is empty";
       return
     }
-    renderLibraryMarkup(queue);
+    renderLibraryMarkup(JSON.parse(localStorage.getItem("queue")));
   })
   
   btnWatched.addEventListener("click", () => {
@@ -60,7 +60,8 @@ home.addEventListener('click', onAddHomePage);
       messageLibrary.innerHTML = "watched films is empty";
       return
     }
-    renderLibraryMarkup(watched);
+    renderLibraryMarkup(JSON.parse(localStorage.getItem("watched")));
+ 
   })
    
    if (queue != 0) {

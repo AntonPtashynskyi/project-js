@@ -51,3 +51,20 @@ function toggleTextQueue(e) {
 }
 
 export { onClickWatchedButton, onClickQueueButton, toggleTextWatched, toggleTextQueue };
+
+function refreshWatchedMarkup(savedMovies) {
+  const MyLibrary = document.querySelector('.page-library');
+  const btnWatched = document.querySelector('.js-btn-watched');
+  if (MyLibrary.classList.contains('nav__link--current') && btnWatched.classList.contains('js-btn-active')) {
+    renderLibraryMarkup(savedMovies)
+  };
+ return
+};
+function refreshQueueMarkup(savedMovies) {
+  const MyLibrary = document.querySelector('.page-library');
+  const btnQueue = document.querySelector('.js-btn-queue');
+  if (MyLibrary.classList.contains('nav__link--current') && btnQueue.classList.contains('js-btn-active')) {
+    renderLibraryMarkup(savedMovies)
+  };
+ return
+}; 
