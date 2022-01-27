@@ -28,4 +28,4 @@ function t(){const t=window.pageYOffset,e=document.documentElement.clientHeight;
 },{"./markup":"gUDD","./watched-queue":"EMZk","./modal-team":"VEy2"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./javascript/renderPaginationBlock"),require("./javascript/renderLibraryPagination"),require("./javascript/library"),require("./javascript/fetchMovies"),require("./javascript/preloader"),require("./javascript/scrollToTop"),require("./javascript/modal"),require("./javascript/modal-team");
 },{"./sass/main.scss":"clu1","./javascript/renderPaginationBlock":"iamJ","./javascript/renderLibraryPagination":"dYqC","./javascript/library":"s2Um","./javascript/fetchMovies":"XLFH","./javascript/preloader":"oVfn","./javascript/scrollToTop":"WMXy","./javascript/modal":"qvDO","./javascript/modal-team":"VEy2"}]},{},["Focm"], null)
-//# sourceMappingURL=/project-js/src.76e387e3.js.map
+//# sourceMappingURL=/project-js/src.201d2328.js.map
